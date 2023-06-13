@@ -49,14 +49,23 @@ class _HelpPageState extends State<HelpPage> {
                   ),
                   const SizedBox(height: 16),
                   DropdownButtonFormField(
+                    // padding: EdgeInsets.symmetric(horizontal: 10),
                     items: const [
                       DropdownMenuItem(
                         value: 'Option 1',
-                        child: Text('Option 1'),
+                        child: Text('Attendance Issue'),
                       ),
                       DropdownMenuItem(
                         value: 'Option 2',
-                        child: Text('Option 2'),
+                        child: Text('General Query'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Option 1',
+                        child: Text('Feedback'),
+                      ),
+                      DropdownMenuItem(
+                        value: 'Option 2',
+                        child: Text('Bug Reporting'),
                       ),
                     ],
                     onChanged: (value) {},
@@ -146,7 +155,7 @@ class _HelpPageState extends State<HelpPage> {
                       ),
                     ),
                   ),
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 150),
                 ],
               ),
             ),

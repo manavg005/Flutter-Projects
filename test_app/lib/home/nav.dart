@@ -54,7 +54,7 @@ class _NavState extends State<Nav> {
               onTap: _onItemTapped,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
+                  icon: Icon(Icons.home_work_outlined),
                   label: 'Home',
                 ),
                 BottomNavigationBarItem(
@@ -62,11 +62,11 @@ class _NavState extends State<Nav> {
                   label: 'History',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.help),
+                  icon: Icon(Icons.help_outline_rounded),
                   label: 'Help',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
+                  icon: Icon(Icons.person_outline_outlined),
                   label: 'Profile',
                 ),
               ],
