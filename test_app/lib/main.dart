@@ -1,9 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:test_app/otp.dart';
 // import 'package:task1/phone.dart';
 
+import 'home.dart';
 import 'phone.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -14,8 +19,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "phone",
-      routes: {"phone": (context) => const MyPhone()},
+      title: "Phone Number OTP",
+      initialRoute: "home",
+      routes: {
+        "phone": (context) => const MyPhone(),
+        "otp": (context) => const MyOTP(),
+        "home": (context) => MyHome(),
+      },
     );
   }
 }

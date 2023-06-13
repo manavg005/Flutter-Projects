@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:task2/help.dart';
 import 'package:task2/profile.dart';
 
-
 class Nav extends StatefulWidget {
   const Nav({super.key});
 
@@ -48,6 +47,10 @@ class _NavState extends State<Nav> {
               currentIndex: _selectedIndex,
               onTap: _onItemTapped,
               items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home),
+                  label: 'Home',
+                ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.help),
                   label: 'Help',

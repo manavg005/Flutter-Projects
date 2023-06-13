@@ -66,9 +66,6 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
-                ),
 
                 // welcome back, you've been missed!
                 Padding(

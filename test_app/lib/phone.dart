@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyPhone extends StatefulWidget {
   const MyPhone({super.key});
+
+  static String verify = "";
 
   @override
   State<MyPhone> createState() => _MyPhoneState();
@@ -12,6 +15,8 @@ class MyPhone extends StatefulWidget {
 class _MyPhoneState extends State<MyPhone> {
   bool isButtonActive = true;
   late TextEditingController controller;
+  var phone = "";
+  var countryCode = "+91";
   @override
   void initState() {
     super.initState();
@@ -65,16 +70,15 @@ class _MyPhoneState extends State<MyPhone> {
                 const SizedBox(
                   height: 10,
                 ),
-                Text("Please enter your registered mobile number to continue",
-                    style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(
+                Text(
+                  "Please enter your registered mobile number to continue",
+                  style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
-                    ))
-                    //     TextStyle(
-                    //   fontSize: 16,
-                    // ),
                     ),
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -89,11 +93,14 @@ class _MyPhoneState extends State<MyPhone> {
                       ),
                       Expanded(
                         child: TextFormField(
-                          keyboardType: TextInputType.number,
+                          onChanged: (value) {
+                            phone = value;
+                          },
+                          keyboardType: TextInputType.phone,
                           // textAlign: TextAlign.center,
-                          inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.digitsOnly,
-                          ],
+                          // inputFormatters: <TextInputFormatter>[
+                          //   FilteringTextInputFormatter.digitsOnly,
+                          // ],
                           decoration: const InputDecoration(
                               border: InputBorder.none,
                               hintText: "Enter Your Mobile Number"),
@@ -110,11 +117,20 @@ class _MyPhoneState extends State<MyPhone> {
                   height: 45,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: isButtonActive
-                        ? () {
-                            setState(() => isButtonActive = false);
-                          }
-                        : null,
+                    onPressed: () async {
+                      await FirebaseAuth.instance.verifyPhoneNumber(
+                        // phoneNumber: "+91 9070507555",
+                        phoneNumber: '${countryCode + phone}',
+                        verificationCompleted:
+                            (PhoneAuthCredential credential) {},
+                        verificationFailed: (FirebaseAuthException e) {},
+                        codeSent: (String verificationId, int? resendToken) {
+                          MyPhone.verify = verificationId;
+                          Navigator.pushNamed(context, 'otp');
+                        },
+                        codeAutoRetrievalTimeout: (String verificationId) {},
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(255, 34, 93, 195),
                         disabledForegroundColor:
