@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Phone Number OTP",
-      initialRoute: "home",
+      initialRoute: "phone",
       routes: {
         "phone": (context) => const MyPhone(),
         "otp": (context) => const MyOTP(),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 class MyHistory extends StatelessWidget {
-  const MyHistory({super.key});
+  const MyHistory({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +11,7 @@ class MyHistory extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          'Help',
+          'History',
         ),
         elevation: 0,
         backgroundColor: Colors.indigo.shade800,
@@ -25,13 +26,27 @@ class MyHistory extends StatelessWidget {
             ),
             color: Colors.white,
           ),
-          child: const Padding(
-            padding: EdgeInsets.all(16.0),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               children: <Widget>[
-                SizedBox(height: 100),
                 Align(
                   alignment: Alignment.centerLeft,
+                  child: TableCalendar(
+                    firstDay: DateTime.now().subtract(Duration(days: 365)),
+                    lastDay: DateTime.now().add(Duration(days: 365)),
+                    focusedDay: DateTime.now(),
+                    calendarFormat: CalendarFormat.month,
+                    startingDayOfWeek: StartingDayOfWeek.sunday,
+                    headerStyle: HeaderStyle(
+                      titleCentered: true,
+                      formatButtonVisible: false,
+                    ),
+                    // Add more configuration as needed
+                  ),
+                ),
+                SizedBox(
+                  height: 400,
                 ),
               ],
             ),
